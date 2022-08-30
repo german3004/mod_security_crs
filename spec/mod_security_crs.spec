@@ -1,6 +1,6 @@
 Summary: ModSecurity Rules
 Name: mod_security_crs
-Version: 4.0.0 
+Version: 4.0.0-rc1 
 Release: 1%{?dist}
 License: ASL 2.0
 URL: https://coreruleset.org
