@@ -1,6 +1,6 @@
 Summary: ModSecurity Rules
 Name: mod_security_crs
-Version: 4.0.0-rc1 
+Version: 4.0.0
 Release: 1%{?dist}
 License: ASL 2.0
 URL: https://coreruleset.org
@@ -14,7 +14,8 @@ Obsoletes: mod_security_crs-extras < 3.0.0
 This package provides the base rules for mod_security.
 
 %prep
-%setup -q -n coreruleset-%{version}
+#%setup -q -n coreruleset-%{version}
+%setup -q -n coreruleset-%{version}-rc1
 
 %build
 
