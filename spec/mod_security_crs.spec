@@ -5,7 +5,7 @@ Release: 1%{?dist}
 License: ASL 2.0
 URL: https://coreruleset.org
 Group: System Environment/Daemons
-Source: https://codeload.github.com/coreruleset/coreruleset/tar.gz/refs/tags/v4.0.0-rc1
+Source0: https://codeload.github.com/coreruleset/coreruleset/tar.gz/refs/tags/v4.0.0-rc1
 BuildArch: noarch
 Requires: mod_security >= 2.8.0
 Obsoletes: mod_security_crs-extras < 3.0.0
@@ -23,6 +23,8 @@ This package provides the base rules for mod_security.
 
 install -d %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/
 install -d %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/activated_rules
+install -d %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config
+install -d %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins
 install -d %{buildroot}%{_datarootdir}/mod_modsecurity_crs/rules
 install -d %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins
 
@@ -38,11 +40,19 @@ for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/rules/` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/rules/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/activated_rules/$f;
 done
 
+# activate all plugins
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-before.conf` ; do
+    ln -s %{_datarootdir}/mod_modsecurity_crs/rules/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$f;
+done
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-after.conf` ; do
+    ln -s %{_datarootdir}/mod_modsecurity_crs/rules/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$f;
+done
 
 %files
 %license LICENSE
 %doc CHANGES README.md
 %config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/activated_rules/*
+%config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/plugins-config/*
 %config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/crs-setup.conf
 %{_datarootdir}/mod_modsecurity_crs
 
