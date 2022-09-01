@@ -1,0 +1,3 @@
+[submodule "plugins/wordpress-rule-exclusions-plugin"]
+	path = plugins/wordpress-rule-exclusions-plugin
+	url = https://github.com/coreruleset/wordpress-rule-exclusions-plugin.git
