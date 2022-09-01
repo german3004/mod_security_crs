@@ -43,13 +43,13 @@ done
 
 # activate all plugins
 tar -xzf %{SOURCE1} -C %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/plugins/*-before.conf` ; do
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/plugins/*-before.conf` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$f;
 done
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/plugins/*-after.conf` ; do
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/plugins/*-after.conf` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$f;
 done
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/plugins/*-config.conf` ; do
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/plugins/*-config.conf` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$f;
 done
 
