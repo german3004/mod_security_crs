@@ -42,7 +42,7 @@ for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/rules/` ; do
 done
 
 # activate all plugins
-tar -xzf %{SOURCE1} %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
+tar -xzf %{SOURCE1} -C %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
 for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/plugins/*-before.conf` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$f;
 done
