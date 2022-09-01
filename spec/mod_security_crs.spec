@@ -41,11 +41,14 @@ for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/rules/` ; do
 done
 
 # activate all plugins
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-before.conf` ; do
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/plugins/*-before.conf` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/rules/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$f;
 done
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-after.conf` ; do
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/plugins/*-after.conf` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/rules/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$f;
+done
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/plugins/*-config.conf` ; do
+    ln -s %{_datarootdir}/mod_modsecurity_crs/rules/$f %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$f;
 done
 
 %files
