@@ -42,8 +42,8 @@ for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/rules/` ; do
 done
 
 # activate all plugins
-install -Dp -m0644 %{SOURCE1} %{buildroot}%{_datarootdir}/plugins/plugins.tar.gz
-tar -xzf %{buildroot}%{_datarootdir}/plugins/plugins.tar.gz -C %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
+#install -Dp -m0644 %{SOURCE1} %{buildroot}%{_datarootdir}/plugins/plugins.tar.gz
+tar -xzf %{SOURCE1} -C %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
 #for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-before.conf` ; do
 #    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 #done
@@ -58,7 +58,7 @@ tar -xzf %{buildroot}%{_datarootdir}/plugins/plugins.tar.gz -C %{buildroot}%{_da
 %license LICENSE
 %doc CHANGES README.md
 %config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/activated_rules/*
-%config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/plugins-config/*
+#%config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/plugins-config/*
 %config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/crs-setup.conf
 %{_datarootdir}/mod_modsecurity_crs
 
