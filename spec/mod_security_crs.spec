@@ -1,7 +1,7 @@
 Summary: ModSecurity Rules
 Name: mod_security_crs
 Version: 4.0.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: ASL 2.0
 URL: https://coreruleset.org
 Group: System Environment/Daemons
@@ -58,7 +58,8 @@ done
 %license LICENSE
 %doc CHANGES README.md
 %config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/activated_rules/*
-#%config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/plugins-config/*
+%config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/plugins-config/*
+%config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/plugins/*
 %config(noreplace) %{_sysconfdir}/httpd/modsecurity.d/crs-setup.conf
 %{_datarootdir}/mod_modsecurity_crs
 
