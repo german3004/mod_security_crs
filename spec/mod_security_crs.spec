@@ -64,6 +64,7 @@ done
 %{_datarootdir}/mod_modsecurity_crs
 
 
+
 %changelog
 * Mon Aug 30 2021 Rodrigo Martinez <rmartinez@tilsor.com.uy> - 3.3.2
 - Update to last version for bug in Drupal rules in branch 3.3
