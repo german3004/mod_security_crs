@@ -43,15 +43,15 @@ done
 
 # activate all plugins
 tar -xzf %{SOURCE1} -C %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-before.conf` ; do
-    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
-done
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-after.conf` ; do
-    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
-done
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-config.conf` ; do
-    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$(basename $f);
-done
+#for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-before.conf` ; do
+#    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
+#done
+#for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-after.conf` ; do
+#    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
+#done
+#for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-config.conf` ; do
+#    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$(basename $f);
+#done
 
 %files
 %license LICENSE
