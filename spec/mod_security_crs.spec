@@ -29,6 +29,7 @@ install -d %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config
 install -d %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins
 install -d %{buildroot}%{_datarootdir}/mod_modsecurity_crs/rules
 install -d %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins
+install -Dp -m0644 %{SOURCE2} %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/tilsor_plugins-config.conf 
 
 # To exclude rules (pre/post)
 mv rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf.example %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/activated_rules/REQUEST-900-EXCLUSION-RULES-BEFORE-CRS.conf
@@ -59,8 +60,6 @@ done
 for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -not -name '*config*' -not -name '*after*' -not -name '*before*' -not -name '*tar.gz' 2> /dev/null` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
-
-cp %{SOURCE2} %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/
 
 %files
 %license LICENSE
