@@ -7,6 +7,7 @@ URL: https://coreruleset.org
 Group: System Environment/Daemons
 Source0: https://codeload.github.com/coreruleset/coreruleset/tar.gz/refs/tags/v4.0.0-rc1
 Source1: https://github.com/german3004/mod_security_crs/raw/main/plugins/plugins.tar.gz 
+Source2: https://raw.githubusercontent.com/german3004/mod_security_crs/main/plugins/tilsor_plugins-conf.conf
 BuildArch: noarch
 Requires: mod_security >= 2.8.0
 Obsoletes: mod_security_crs-extras < 3.0.0
@@ -44,13 +45,13 @@ done
 # activate all plugins
 #install -Dp -m0644 %{SOURCE1} %{buildroot}%{_datarootdir}/plugins/plugins.tar.gz
 tar -xzf %{SOURCE1} -C %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-before.conf 2> /dev/null` ; do
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-before.conf 2> /dev/null` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-after.conf 2> /dev/null` ; do
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-after.conf 2> /dev/null` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
-for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*-config.conf 2> /dev/null` ; do
+for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-config.conf 2> /dev/null` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$(basename $f);
 done
 
@@ -58,6 +59,8 @@ done
 for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -not -name '*config*' -not -name '*after*' -not -name '*before*' 2> /dev/null` ; do
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
+
+cp %{SOURCE2} %{_sysconfdir}/httpd/modsecurity.d/plugins/
 
 %files
 %license LICENSE
