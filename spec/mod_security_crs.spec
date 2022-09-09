@@ -47,17 +47,17 @@ done
 #install -Dp -m0644 %{SOURCE1} %{buildroot}%{_datarootdir}/plugins/plugins.tar.gz
 tar -xzf %{SOURCE1} -C %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
 #for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-before.conf 2> /dev/null` ; do
-for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*before*' -name '.conf' 2> /dev/null` ; do
+for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*before*' -name '*.conf' 2> /dev/null` ; do
     #ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $(dirname $f)))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
 #for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-after.conf 2> /dev/null` ; do
-for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*after*' -name '.conf' 2> /dev/null` ; do
+for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*after*' -name '*.conf' 2> /dev/null` ; do
     #ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $(dirname $f)))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
 #for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-config.conf 2> /dev/null` ; do
-for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*config*' -name '.conf' 2> /dev/null` ; do
+for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*config*' -name '*.conf' 2> /dev/null` ; do
     #ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$(basename $f);
     ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $(dirname $f)))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$(basename $f);
 done
