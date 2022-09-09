@@ -1,7 +1,7 @@
 Summary: ModSecurity Rules
 Name: mod_security_crs
 Version: 4.0.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: ASL 2.0
 URL: https://coreruleset.org
 Group: System Environment/Daemons
@@ -49,23 +49,23 @@ tar -xzf %{SOURCE1} -C %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/
 #for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-before.conf 2> /dev/null` ; do
 for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*before*' -name '*.conf' 2> /dev/null` ; do
     #ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
-    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $(dirname $f)))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
+    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $f))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
 #for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-after.conf 2> /dev/null` ; do
 for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*after*' -name '*.conf' 2> /dev/null` ; do
     #ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
-    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $(dirname $f)))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
+    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $f))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
 #for f in `ls %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/*/*-config.conf 2> /dev/null` ; do
 for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -name '*config*' -name '*.conf' 2> /dev/null` ; do
     #ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$(basename $f);
-    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $(dirname $f)))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$(basename $f);
+    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $f))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins-config/$(basename $f);
 done
 
 # There are some files that its names does not contains the word 'config', 'after' or 'before', for example antivirus.lua
 for f in `find %{buildroot}%{_datarootdir}/mod_modsecurity_crs/plugins/ -type f -not -name '*config*' -not -name '*after*' -not -name '*before*' -not -name '*tar.gz' 2> /dev/null` ; do
     #ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
-    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $(dirname $f)))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
+    ln -s %{_datarootdir}/mod_modsecurity_crs/plugins/$(basename $(dirname $f))/$(basename $f) %{buildroot}%{_sysconfdir}/httpd/modsecurity.d/plugins/$(basename $f);
 done
 
 %files
